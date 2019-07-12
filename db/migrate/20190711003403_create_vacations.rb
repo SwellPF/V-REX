@@ -4,7 +4,7 @@ class CreateVacations < ActiveRecord::Migration
       t.string :location_name
       t.text :description
       t.string :best_time
-      t.string :reason
+      t.text :reason
       t.string :photo_link
       t.timestamps null: false
     end
