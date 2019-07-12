@@ -54,16 +54,52 @@ class VacationsController < ApplicationController
 
   # GET: /vacations/5/edit
   get "/vacations/:id/edit" do
-    erb :"/vacations/edit.html"
+    if is_logged_in?
+      @vacation = Vacation.find_by(params[:id])
+      if @vacation && vacation.user == current_user
+        erb :"/vacations/edit.html"
+      else
+        flash[:message] = "You many only edit entries created by you."
+        redirect to "/vacations"
+      end
+    else
+      flash[:message] = "You must be logged in to edit vacation recommendations."
+      redirect to "/login"
+    end  
   end
 
   # PATCH: /vacations/5
   patch "/vacations/:id" do
-    redirect "/vacations/:id"
+    if is_logged_in?
+      #if conditional to check if entries aren't valid
+        redirect to "/vacations/#{params[:id]}/edit"
+    else
+      @vacation = Vacation.find_by_id(params[:id])
+      if @vacation && vacation.user == current_user
+        if @vacation.update(content: params[:content])
+          redirect to "/vacations/#{@vacation.id}"
+        else
+          redirect to "/vacations/#{@vacation.id}/edit"
+        end
+      else
+        redirect to "/vacations"
+      end
+    else
+      redirect to "/login"
+    end    
   end
 
   # DELETE: /vacations/5/delete
   delete "/vacations/:id/delete" do
-    redirect "/vacations"
+    if is_logged_in?
+      @vacation = Vacation.find_by(params[:id])
+      if @vacation && vacation.user == current_user
+        @vacation.delete
+      end
+      redirect to "/vacations"
+    else
+      flash[:message] = "You must be logged in to delete vacation recommendations."
+      redirect to "/login"
+    end
   end
 end
