@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h3>Login to V-REX</h3>
+<form action="/login" method="post">
+<label>Username:</label>
+<input type="text" name="username" id="username" placeholder="Username">
+
+<label>Email:</label>
+<input type="text" name="email" id="email" placeholder="Email">
+
+<label>Password:</label>
+<input type="password" name="password" id="password" placeholder="Password">
+
+<input type="submit" value="submit">
+</form>
