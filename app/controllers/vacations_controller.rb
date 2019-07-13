@@ -29,7 +29,7 @@ class VacationsController < ApplicationController
     if is_logged_in?
       # if conditional to make sure that all required fields are present
           redirect to "/vacations/new"
-    else
+        #else
       @vacation = current_user.vacations.new(params)
       if @vacation.save
         redirect to "/vacations/#{vacation.id}"
@@ -41,6 +41,7 @@ class VacationsController < ApplicationController
       flash[:message] = "You must be logged in to create or view vacation recommendations."
       redirect to "/login"
     end
+  end
 
   # GET: /vacations/5
   get "/vacations/:id" do
