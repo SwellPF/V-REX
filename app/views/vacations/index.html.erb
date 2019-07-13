@@ -1,1 +1,13 @@
-<h1>This is the Model's index page.</h1>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h2>Welcome, <%= current_user.username %></h2>
+<h3>Vacation Recommendations</h3>
+<ul>
+<% @vacations.each do |tweet| %>
+<li><%= vacation.location_name %></li>
+<%end%>
+</ul>
+<button onclick="window.location.href = '/vacations/new';">Create New Vacation Recommendation</button>
+<button onclick="window.location.href = '/logout';">Logout</button>
