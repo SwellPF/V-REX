@@ -1,1 +1,13 @@
 <h1>This is the show page for an individual instance of your model.</h1>
+<%= @vacation.location_name %>
+<%= @vacation.description %>
+<%= @vacation.best_time %>
+<%= @vacation.reason %>
+<%= @vacation.photo_link %>
+
+<form action="/vacations/<%=@vacation.id%>/delete" method="post">
+<input id="hidden" type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete Recommendation">
+</form>
+<button onclick="window.location.href = '/vacations/<%=@vacation.id%>/edit';">Edit Recommendation</button>
+<button onclick="window.location.href = '/vacations';">Show All Recommendations</button>

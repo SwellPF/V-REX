@@ -1,1 +1,15 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h3>Edit your vacation recommendation:</h3>
+<form action="/vacations/<%= @vacation.id %>" method="post">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+    <label>Location Name:</label>
+    <input type="text" name="location" id="location" value="<%= @vacation.location %>">
+    <label>Description:</label>
+    <input type="text" name="description" id="description" size="80" value="<%= @vacation.description %>">
+    <label>Best Time to Visit:</label>
+    <input type="text" name="best_time" id="best_time" value="<%= @vacation.best_time %>">
+    <label>Reason to Visit:</label>
+    <input type="text" name="reason" id="reason" size="80" value="<%= @vacation.reason %>">
+    <label>Link to Photo:</label>
+    <input type="text" name="photo_link" id="photo_link" value="<%= @vacation.photo_link %>">
+    <input type="submit" value="submit">
+</form>
