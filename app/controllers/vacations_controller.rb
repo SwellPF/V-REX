@@ -27,10 +27,11 @@ class VacationsController < ApplicationController
   # POST: /vacations
   post "/vacations" do
     if is_logged_in?
-      # if conditional to make sure that all required fields are present
-          redirect to "/vacations/new"
-        #else
+      if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
+        redirect to "/vacations/new"
+      else
       @vacation = current_user.vacations.new(params)
+      end
       if @vacation.save
         redirect to "/vacations/#{vacation.id}"
       else
@@ -72,10 +73,11 @@ class VacationsController < ApplicationController
   # PATCH: /vacations/5
   patch "/vacations/:id" do
     if is_logged_in?
-      #if conditional to check if entries aren't valid
+      if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
         redirect to "/vacations/#{params[:id]}/edit"
-    else
+      else
       @vacation = Vacation.find_by_id(params[:id])
+      end
       if @vacation && vacation.user == current_user
         if @vacation.update(content: params[:content])
           redirect to "/vacations/#{@vacation.id}"

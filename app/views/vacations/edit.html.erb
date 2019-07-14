@@ -2,7 +2,7 @@
 <form action="/vacations/<%= @vacation.id %>" method="post">
 <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Location Name:</label>
-    <input type="text" name="location" id="location" value="<%= @vacation.location %>">
+    <input type="text" name="location_name" id="location_name" value="<%= @vacation.location_name %>">
     <label>Description:</label>
     <input type="text" name="description" id="description" size="80" value="<%= @vacation.description %>">
     <label>Best Time to Visit:</label>
