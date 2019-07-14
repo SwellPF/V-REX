@@ -1,7 +1,7 @@
-require 'rack-flash'
+#require 'rack-flash'
 
 class VacationsController < ApplicationController
-  use Rack::Flash
+  #use Rack::Flash
 
   # GET: /vacations
   get "/vacations" do
@@ -9,8 +9,8 @@ class VacationsController < ApplicationController
       @vacations = Vacation.all
       erb :"/vacations/index.html"
     else
-      flash[:message] = "You must be logged in to create, edit or view vacation recommendations."
-      redirect to "/login"
+      #flash[:message] = "You must be logged in to create, edit or view vacation recommendations."
+      redirect to "/users/login.html"
     end
   end
 
@@ -19,8 +19,8 @@ class VacationsController < ApplicationController
     if is_logged_in?
       erb :"/vacations/new.html"
     else
-      flash[:message] = "You must be logged in to create vacation recommendations."
-      redirect to "/login"
+      #flash[:message] = "You must be logged in to create vacation recommendations."
+      redirect to "/users/login.html"
     end
   end
 
@@ -28,18 +28,18 @@ class VacationsController < ApplicationController
   post "/vacations" do
     if is_logged_in?
       if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
-        redirect to "/vacations/new"
+        redirect to "/vacations/new.html"
       else
       @vacation = current_user.vacations.new(params)
       end
       if @vacation.save
         redirect to "/vacations/#{vacation.id}"
       else
-        flash[:message]= "Error creating vacation recommendation.  Please try again."
-        redirect to "/vacations/new"
+        #flash[:message]= "Error creating vacation recommendation.  Please try again."
+        redirect to "/vacations/new.html"
       end
     else
-      flash[:message] = "You must be logged in to create or view vacation recommendations."
+      #flash[:message] = "You must be logged in to create or view vacation recommendations."
       redirect to "/login"
     end
   end
@@ -61,11 +61,11 @@ class VacationsController < ApplicationController
       if @vacation && vacation.user == current_user
         erb :"/vacations/edit.html"
       else
-        flash[:message] = "You many only edit entries created by you."
+        #flash[:message] = "You many only edit entries created by you."
         redirect to "/vacations"
       end
     else
-      flash[:message] = "You must be logged in to edit vacation recommendations."
+      #flash[:message] = "You must be logged in to edit vacation recommendations."
       redirect to "/login"
     end  
   end
@@ -101,7 +101,7 @@ class VacationsController < ApplicationController
       end
       redirect to "/vacations"
     else
-      flash[:message] = "You must be logged in to delete vacation recommendations."
+      #flash[:message] = "You must be logged in to delete vacation recommendations."
       redirect to "/login"
     end
   end

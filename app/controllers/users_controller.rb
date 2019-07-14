@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get "/signup" do
     if !is_logged_in?
-      erb :"/users/signup"
+      erb :"/users/signup.html"
     else
       redirect to "/vacations"
     end
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   post "/signup" do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      flash[:message] = "You must enter a valid username, email address and password to sign up."
+      #flash[:message] = "You must enter a valid username, email address and password to sign up."
       redirect to "/signup"
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   get "/login" do
     if !is_logged_in?
-      erb :"/users/login"
+      erb :"/users/login.html"
     else
       redirect to "/vacations"
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect to "/vacations"
     else
-      flash[:message] = "Invalid username or password.  Please try again."
+      #flash[:message] = "Invalid username or password.  Please try again."
       redirect to '/login'
     end
   end
