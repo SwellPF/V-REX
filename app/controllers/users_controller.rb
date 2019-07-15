@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get "/signup" do
     if !is_logged_in?
-      erb :"/users/signup.html"
+      erb :"/users/signup"
     else
       redirect to "/vacations"
     end
@@ -22,19 +22,23 @@ class UsersController < ApplicationController
 
   get "/login" do
     if !is_logged_in?
-      erb :"/users/login.html"
+      erb :"/users/login"
     else
-      redirect to "/vacations"
+      binding.pry
+      redirect to "/vacations/vacations"
     end
   end
 
   post "/login" do
-    user = User.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    @user = User.find_by(:username => params[:username])
+    binding.pry
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      binding.pry
       redirect to "/vacations"
     else
       #flash[:message] = "Invalid username or password.  Please try again."
+      binding.pry
       redirect to '/login'
     end
   end

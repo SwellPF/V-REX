@@ -5,22 +5,23 @@ class VacationsController < ApplicationController
 
   # GET: /vacations
   get "/vacations" do
+    binding.pry
     if is_logged_in?
       @vacations = Vacation.all
-      erb :"/vacations/index.html"
+      erb :"/vacations/index"
     else
       #flash[:message] = "You must be logged in to create, edit or view vacation recommendations."
-      redirect to "/users/login.html"
+      redirect to "/users/login"
     end
   end
 
   # GET: /vacations/new
   get "/vacations/new" do
     if is_logged_in?
-      erb :"/vacations/new.html"
+      erb :"/vacations/new"
     else
       #flash[:message] = "You must be logged in to create vacation recommendations."
-      redirect to "/users/login.html"
+      redirect to "/users/login"
     end
   end
 
@@ -28,15 +29,17 @@ class VacationsController < ApplicationController
   post "/vacations" do
     if is_logged_in?
       if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
-        redirect to "/vacations/new.html"
+        redirect to "/vacations/new"
       else
-      @vacation = current_user.vacations.new(params)
+        binding.pry 
+        @vacation = current_user.vacations.new(location_name: params[:location_name], description: params[:description], best_time: params[:best_time], reason: params[:reason], photo_link: params[:photo_link])
       end
+      binding.pry
       if @vacation.save
-        redirect to "/vacations/#{vacation.id}"
+        redirect to "/vacations/#{@vacation.id}"
       else
         #flash[:message]= "Error creating vacation recommendation.  Please try again."
-        redirect to "/vacations/new.html"
+        redirect to "/vacations/new"
       end
     else
       #flash[:message] = "You must be logged in to create or view vacation recommendations."
@@ -47,8 +50,9 @@ class VacationsController < ApplicationController
   # GET: /vacations/5
   get "/vacations/:id" do
     if is_logged_in?
-      @vacation = Vacation.find_by(params[:id])
-      erb :"/vacations/show.html"
+      binding.pry
+      @vacation = Vacation.find_by_id(params[:id])
+      erb :"/vacations/show"
     else
       redirect to "/login"
     end
@@ -57,9 +61,10 @@ class VacationsController < ApplicationController
   # GET: /vacations/5/edit
   get "/vacations/:id/edit" do
     if is_logged_in?
-      @vacation = Vacation.find_by(params[:id])
-      if @vacation && vacation.user == current_user
-        erb :"/vacations/edit.html"
+      @vacation = Vacation.find_by_id(params[:id])
+      binding.pry
+      if @vacation && @vacation.user == current_user
+        erb :"/vacations/edit"
       else
         #flash[:message] = "You many only edit entries created by you."
         redirect to "/vacations"

@@ -1,9 +1,8 @@
-<h1>This is the show page for an individual instance of your model.</h1>
-<%= @vacation.location_name %>
-<%= @vacation.description %>
-<%= @vacation.best_time %>
-<%= @vacation.reason %>
-<%= @vacation.photo_link %>
+Location Name: <%= @vacation.location_name %><br>
+Description: <%= @vacation.description %><br>
+Best Time to Visit: <%= @vacation.best_time %><br>
+Reason it's Special: <%= @vacation.reason %><br>
+Link to Photo/Website: <%= @vacation.photo_link %><br><br>
 
 <form action="/vacations/<%=@vacation.id%>/delete" method="post">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
