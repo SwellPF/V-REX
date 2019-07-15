@@ -5,7 +5,7 @@ class VacationsController < ApplicationController
 
   # GET: /vacations
   get "/vacations" do
-    binding.pry
+    #binding.pry
     if is_logged_in?
       @vacations = Vacation.all
       erb :"/vacations/index"
@@ -31,10 +31,10 @@ class VacationsController < ApplicationController
       if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
         redirect to "/vacations/new"
       else
-        binding.pry 
+        #binding.pry 
         @vacation = current_user.vacations.new(location_name: params[:location_name], description: params[:description], best_time: params[:best_time], reason: params[:reason], photo_link: params[:photo_link])
       end
-      binding.pry
+      #binding.pry
       if @vacation.save
         redirect to "/vacations/#{@vacation.id}"
       else
@@ -43,18 +43,18 @@ class VacationsController < ApplicationController
       end
     else
       #flash[:message] = "You must be logged in to create or view vacation recommendations."
-      redirect to "/login"
+      redirect to "/users/login"
     end
   end
 
   # GET: /vacations/5
   get "/vacations/:id" do
     if is_logged_in?
-      binding.pry
+      #binding.pry
       @vacation = Vacation.find_by_id(params[:id])
       erb :"/vacations/show"
     else
-      redirect to "/login"
+      redirect to "/users/login"
     end
   end
 
@@ -62,7 +62,7 @@ class VacationsController < ApplicationController
   get "/vacations/:id/edit" do
     if is_logged_in?
       @vacation = Vacation.find_by_id(params[:id])
-      binding.pry
+      #binding.pry
       if @vacation && @vacation.user == current_user
         erb :"/vacations/edit"
       else
@@ -71,7 +71,7 @@ class VacationsController < ApplicationController
       end
     else
       #flash[:message] = "You must be logged in to edit vacation recommendations."
-      redirect to "/login"
+      redirect to "/users/login"
     end  
   end
 
@@ -83,8 +83,8 @@ class VacationsController < ApplicationController
       else
       @vacation = Vacation.find_by_id(params[:id])
       end
-      if @vacation && vacation.user == current_user
-        if @vacation.update(content: params[:content])
+      if @vacation && @vacation.user == current_user
+        if @vacation.update(location_name: params[:location_name], description: params[:description], best_time: params[:best_time], reason: params[:reason], photo_link: params[:photo_link])
           redirect to "/vacations/#{@vacation.id}"
         else
           redirect to "/vacations/#{@vacation.id}/edit"
@@ -93,21 +93,21 @@ class VacationsController < ApplicationController
         redirect to "/vacations"
       end
     else
-      redirect to "/login"
+      redirect to "/users/login"
     end    
   end
 
   # DELETE: /vacations/5/delete
   delete "/vacations/:id/delete" do
     if is_logged_in?
-      @vacation = Vacation.find_by(params[:id])
-      if @vacation && vacation.user == current_user
+      @vacation = Vacation.find_by_id(params[:id])
+      if @vacation && @vacation.user == current_user
         @vacation.delete
       end
       redirect to "/vacations"
     else
       #flash[:message] = "You must be logged in to delete vacation recommendations."
-      redirect to "/login"
+      redirect to "/users/login"
     end
   end
 end

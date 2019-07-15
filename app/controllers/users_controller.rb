@@ -31,61 +31,26 @@ class UsersController < ApplicationController
 
   post "/login" do
     @user = User.find_by(:username => params[:username])
-    binding.pry
+    #binding.pry
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      binding.pry
+     # binding.pry
       redirect to "/vacations"
     else
       #flash[:message] = "Invalid username or password.  Please try again."
-      binding.pry
+     # binding.pry
       redirect to '/login'
     end
   end
 
   get "/logout" do
+    binding.pry
     if is_logged_in?
       session.destroy
-      redirect to "/login"
+      redirect to "/index"
     else
       redirect to "/"
     end
   end
 
-
-
-  # GET: /users
-  #get "/users" do
-  #erb :"/users/index.html"
-  #end
-
-  # GET: /users/new
-  #get "/users/new" do
-  #  erb :"/users/new.html"
-  #end
-
-  # POST: /users
-  #post "/users" do
-  #  redirect "/users"
-  #end
-
-  # GET: /users/5
-  #get "/users/:id" do
-  #  erb :"/users/show.html"
-  #end
-
-  # GET: /users/5/edit
-  #get "/users/:id/edit" do
-  #  erb :"/users/edit.html"
-  #end
-
-  # PATCH: /users/5
-  #patch "/users/:id" do
-  #  redirect "/users/:id"
-  #end
-
-  # DELETE: /users/5/delete
-  #delete "/users/:id/delete" do
-  # redirect "/users"
-  #end
 end

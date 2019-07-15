@@ -3,13 +3,18 @@
 <input id="hidden" type="hidden" name="_method" value="PATCH">
     <label>Location Name:</label>
     <input type="text" name="location_name" id="location_name" value="<%= @vacation.location_name %>">
+    <br>
     <label>Description:</label>
     <input type="text" name="description" id="description" size="80" value="<%= @vacation.description %>">
+    <br>
     <label>Best Time to Visit:</label>
     <input type="text" name="best_time" id="best_time" value="<%= @vacation.best_time %>">
+    <br>
     <label>Reason to Visit:</label>
     <input type="text" name="reason" id="reason" size="80" value="<%= @vacation.reason %>">
+    <br>
     <label>Link to Photo:</label>
     <input type="text" name="photo_link" id="photo_link" value="<%= @vacation.photo_link %>">
+    <br>
     <input type="submit" value="submit">
 </form>

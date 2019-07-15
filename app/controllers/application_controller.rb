@@ -10,7 +10,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :'/users/login'
+   # binding.pry
+    erb :'/users/index'
   end
 
   helpers do

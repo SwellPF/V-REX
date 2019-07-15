@@ -2,9 +2,8 @@
 <h3>Vacation Recommendations</h3>
 <ul>
 <% @vacations.each do |vacation| %>
-<%=vacation.id%>
-<a href='/vacations/<%=vacation.id%>'><li><%= vacation.location_name %></li></a>
+<a href='/vacations/<%=vacation.id%>'><li><%= vacation.id %>. <%= vacation.location_name %></li></a>
 <%end%>
-</ul>
+</ul><br><br>
 <button onclick="window.location.href = '/vacations/new';">Create New Vacation Recommendation</button>
 <button onclick="window.location.href = '/logout';">Logout</button>
