@@ -35,11 +35,15 @@
     font-weight: bold;
   }
 
-  .submit {
+  .btn-submit {
     padding: 5px 10px;
     background-color: lightgray;
   }
 
+  .btn-delete {
+    padding: 5px 10px;
+    background-color: rgb(252, 99, 99);
+  }
   .display-page {
     display: inline;
   }

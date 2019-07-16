@@ -1,14 +1,15 @@
-<div class="display-page">
 <b>Location Name: </b><%= @vacation.location_name %><br>
 <b>Description: </b><%= @vacation.description %><br>
 <b>Best Time to Visit: </b><%= @vacation.best_time %><br>
 <b>Reason it's Special: </b><%= @vacation.reason %><br>
 <b>Link to Photo/Website: </b><a href="<%= @vacation.photo_link %>" target="_blank"><%= @vacation.photo_link %></a><br><br>
 <img src="<%=@vacation.photo_link %>" width="500">
+<br><br>
+<div class="display-page">
 <form action="/vacations/<%=@vacation.id%>/delete" method="post">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
-<input class="submit" type="submit" value="Delete Recommendation">
+<input class="btn-delete" type="submit" value="Delete Entry">
 </form>
-<button style="padding:5px 10px" onclick="window.location.href = '/vacations/<%=@vacation.id%>/edit';">Edit Recommendation</button>
-<button style="padding:5px 10px" onclick="window.location.href = '/vacations';">Show All Recommendations</button>
+<button style="padding:5px 10px" onclick="window.location.href = '/vacations/<%=@vacation.id%>/edit';">Edit Entry</button>
+<button style="padding:5px 10px" onclick="window.location.href = '/vacations';">Show All Entries</button>
 </div>
