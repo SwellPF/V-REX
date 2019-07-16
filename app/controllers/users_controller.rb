@@ -12,11 +12,14 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       flash[:message] = "You must provide a username, email and password.  Please try again."
       redirect to "/signup"
-    else
+    elsif !(User.find_by(username: params[:username]) || User.find_by(email: params[:email]))
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
       session[:user_id] = @user.id
       redirect to "/vacations"
+    else
+      flash[:message] = "Username or email address already assigned to an account.  Please enter a unique username and email address."
+      redirect to '/signup'
     end
   end
 
