@@ -1,7 +1,5 @@
 <h2>Welcome, <%= current_user.username %></h2>
-<% if flash.has?(:message) %>
-<%= flash[:message] %>
-<% end %>
+
 <h3>Vacation Recommendations</h3>
 <ul>
 <% @vacations.each_with_index do |vacation, index| %>

@@ -1,7 +1,7 @@
-require 'rack-flash'
+#require 'rack-flash'
 
 class VacationsController < ApplicationController
-  use Rack::Flash
+  
 
   # GET: /vacations
   get "/vacations" do
@@ -29,6 +29,7 @@ class VacationsController < ApplicationController
   post "/vacations" do
     if is_logged_in?
       if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
+        flash[:message]= "All fields are required.  Please try again."
         redirect to "/vacations/new"
       else
         #binding.pry 
@@ -71,6 +72,7 @@ class VacationsController < ApplicationController
       end
     else
       flash[:message] = "You must be logged in to edit vacation recommendations."
+      binding.pry
       redirect to "/users/login"
     end  
   end

@@ -15,7 +15,9 @@
   </head>
   <body>
     <div class="wrapper">
-
+      <div class="flash">
+        <%= flash[:message] %>
+      </div>
         <%= yield %>
 
       <footer class="branding">
