@@ -1,6 +1,7 @@
 require './config/environment'
 require 'sinatra/flash'
 
+
 class ApplicationController < Sinatra::Base
 
   configure do

@@ -35,9 +35,14 @@
     font-weight: bold;
   }
 
-  #submit {
-    padding: 20px;
-}
+  .submit {
+    padding: 5px 10px;
+    background-color: lightgray;
+  }
+
+  .display-page {
+    display: inline;
+  }
 
   h1 {
     font-size: 36px;
