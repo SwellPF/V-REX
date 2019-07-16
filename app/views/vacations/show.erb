@@ -6,7 +6,7 @@
 <img src="<%=@vacation.photo_link %>" width="500">
 <form action="/vacations/<%=@vacation.id%>/delete" method="post">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
-<input type="submit" value="Delete Recommendation">
+<input style="padding:10px" type="submit" value="Delete Recommendation">
 </form>
-<button onclick="window.location.href = '/vacations/<%=@vacation.id%>/edit';">Edit Recommendation</button>
-<button onclick="window.location.href = '/vacations';">Show All Recommendations</button>
+<button style="padding:5px 10px" onclick="window.location.href = '/vacations/<%=@vacation.id%>/edit';">Edit Recommendation</button>
+<button style="padding:5px 10px" onclick="window.location.href = '/vacations';">Show All Recommendations</button>

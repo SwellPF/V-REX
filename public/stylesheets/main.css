@@ -35,6 +35,9 @@
     font-weight: bold;
   }
 
+  #submit {
+    padding: 20px;
+}
 
   h1 {
     font-size: 36px;
