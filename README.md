@@ -8,10 +8,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the software and how to install them.
+PC:  Run bundle install to install all required Ruby gems.
 
 ```
-Give examples
+bundle install
 ```
 
 ### Installing
@@ -48,7 +49,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Paul A. Cinoman** - *Initial work* - [Paul A. Cinoman](https://github.com/Swellpf)
+* **Paul A. Cinoman** - *Design and Development* - [Paul A. Cinoman](https://github.com/Swellpf)
 
 
 ## License
