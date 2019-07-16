@@ -55,7 +55,7 @@ class VacationsController < ApplicationController
       @vacation = Vacation.find_by_id(params[:id])
       erb :"/vacations/show"
     else
-      redirect to "/users/login"
+      redirect to "/login"
     end
   end
 
@@ -72,8 +72,7 @@ class VacationsController < ApplicationController
       end
     else
       flash[:message] = "You must be logged in to edit vacation recommendations."
-      binding.pry
-      redirect to "/users/login"
+      redirect to "/login"
     end  
   end
 
@@ -95,7 +94,7 @@ class VacationsController < ApplicationController
         redirect to "/vacations"
       end
     else
-      redirect to "/users/login"
+      redirect to "/login"
     end    
   end
 
@@ -111,7 +110,7 @@ class VacationsController < ApplicationController
       redirect to "/vacations"
     else
       flash[:message] = "You must be logged in to delete vacation recommendations."
-      redirect to "/users/login"
+      redirect to "/login"
     end
   end
 end
