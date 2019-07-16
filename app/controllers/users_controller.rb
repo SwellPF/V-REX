@@ -24,27 +24,22 @@ class UsersController < ApplicationController
     if !is_logged_in?
       erb :"/users/login"
     else
-     # binding.pry
       redirect to "/vacations/vacations"
     end
   end
 
   post "/login" do
     @user = User.find_by(:username => params[:username])
-    #binding.pry
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-     # binding.pry
       redirect to "/vacations"
     else
       flash[:message] = "Invalid username or password.  Please try again."
-     # binding.pry
       redirect to '/login'
     end
   end
 
   get "/logout" do
-    #binding.pry
     if is_logged_in?
       session.destroy
       redirect to "/"

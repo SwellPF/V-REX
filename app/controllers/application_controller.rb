@@ -12,7 +12,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-   # binding.pry
     erb :'/users/index'
   end
 

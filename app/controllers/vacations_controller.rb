@@ -5,7 +5,6 @@ class VacationsController < ApplicationController
 
   # GET: /vacations
   get "/vacations" do
-    #binding.pry
     if is_logged_in?
       @vacations = Vacation.all
       erb :"/vacations/index"
@@ -31,11 +30,10 @@ class VacationsController < ApplicationController
       if params[:location_name] == "" || params[:description] == "" || params[:reason] == "" || params[:best_time] == "" || params[:photo_link] == ""
         flash[:message]= "All fields are required.  Please try again."
         redirect to "/vacations/new"
-      else
-        #binding.pry 
+      else 
         @vacation = current_user.vacations.new(location_name: params[:location_name], description: params[:description], best_time: params[:best_time], reason: params[:reason], photo_link: params[:photo_link])
       end
-      #binding.pry
+      
       if @vacation.save
         redirect to "/vacations/#{@vacation.id}"
       else
@@ -51,7 +49,6 @@ class VacationsController < ApplicationController
   # GET: /vacations/5
   get "/vacations/:id" do
     if is_logged_in?
-      #binding.pry
       @vacation = Vacation.find_by_id(params[:id])
       erb :"/vacations/show"
     else
@@ -63,7 +60,6 @@ class VacationsController < ApplicationController
   get "/vacations/:id/edit" do
     if is_logged_in?
       @vacation = Vacation.find_by_id(params[:id])
-      #binding.pry
       if @vacation && @vacation.user == current_user
         erb :"/vacations/edit"
       else
