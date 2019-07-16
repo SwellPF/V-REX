@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  #use Rack::Flash
 
   get "/signup" do
     if !is_logged_in?
@@ -11,7 +10,6 @@ class UsersController < ApplicationController
 
   post "/signup" do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      flash[:message] = "You must enter a valid username, email address and password to sign up."
       redirect to "/signup"
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
@@ -25,7 +23,7 @@ class UsersController < ApplicationController
     if !is_logged_in?
       erb :"/users/login"
     else
-      binding.pry
+     # binding.pry
       redirect to "/vacations/vacations"
     end
   end
