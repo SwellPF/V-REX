@@ -63,7 +63,7 @@ class VacationsController < ApplicationController
       if @vacation && @vacation.user == current_user
         erb :"/vacations/edit"
       else
-        flash[:message] = "You many only edit entries created by you."
+        flash[:message] = "You may only edit entries created by you."
         redirect to "/vacations"
       end
     else
