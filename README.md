@@ -37,7 +37,7 @@ localhost:9393
 
 * [Sinatra](http://sinatrarb.com/) - The web framework used
 * [Sinatra-Flash](https://github.com/SFEley/sinatra-flash) - Error message presentation
-* [bcrypt] (https://github.com/codahale/bcrypt-ruby) - Encrypting passwords with a salted hash
+* [bcrypt](https://github.com/codahale/bcrypt-ruby) - Encrypting passwords with a salted hash
 
 ## Author
 
