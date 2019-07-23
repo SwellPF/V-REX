@@ -10,7 +10,7 @@ class VacationsController < ApplicationController
       erb :"/vacations/index"
     else
       flash[:message] = "You must be logged in to create, edit or view vacation recommendations."
-      redirect to "/users/login"
+      redirect to "/login"
     end
   end
 
@@ -42,7 +42,7 @@ class VacationsController < ApplicationController
       end
     else
       flash[:message] = "You must be logged in to create or view vacation recommendations."
-      redirect to "/users/login"
+      redirect to "/login"
     end
   end
 
