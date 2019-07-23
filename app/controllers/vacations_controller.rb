@@ -52,6 +52,7 @@ class VacationsController < ApplicationController
       @vacation = Vacation.find_by_id(params[:id])
       erb :"/vacations/show"
     else
+      flash[:message] = "You must be logged in to view vacation recommendations."
       redirect to "/login"
     end
   end
