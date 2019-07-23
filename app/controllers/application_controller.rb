@@ -24,6 +24,13 @@ class ApplicationController < Sinatra::Base
     def is_logged_in?
       !!session[:user_id]
     end
+
+    def redirect_if_not_logged_in
+      if !is_logged_in?
+        flash[:message] = "You must be logged in to create or view vacation recommendations."
+        redirect to "/login"
+      end
+    end
   end
 
 end
